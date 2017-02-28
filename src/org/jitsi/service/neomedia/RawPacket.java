@@ -142,6 +142,30 @@ public class RawPacket
     }
 
     /**
+     * Gets the value of the "version" field of an RTP packet.
+     * @return the value of the RTP "version" field.
+     */
+    public static int getVersion(ByteArrayBuffer baf)
+    {
+        if (baf == null)
+        {
+            return -1;
+        }
+
+        return getVersion(baf.getBuffer(), baf.getOffset(), baf.getLength());
+    }
+
+
+    /**
+     * Gets the value of the "version" field of an RTP packet.
+     * @return the value of the RTP "version" field.
+     */
+    public static int getVersion(byte[] buffer, int offset, int length)
+    {
+        return (buffer[offset] & 0xC0) >>> 6;
+    }
+
+    /**
      * Test whether the RTP Marker bit is set
      *
      * @param buffer
@@ -956,7 +980,7 @@ public class RawPacket
      */
     public int getVersion()
     {
-        return (buffer[offset] & 0xC0) >>> 6;
+        return getVersion(buffer, offset, length);
     }
 
     /**
@@ -1165,6 +1189,17 @@ public class RawPacket
         return RTPUtils.readUint16AsInt(buffer, offset + 2);
     }
 
+
+    public static int getSequenceNumber(ByteArrayBuffer pktIn)
+    {
+        if (pktIn == null)
+        {
+            return -1;
+        }
+
+        return getSequenceNumber(pktIn.getBuffer(), pktIn.getOffset(), pktIn.getLength());
+    }
+
     /**
      * Set sequence number for an RTP buffer
      *
@@ -1176,6 +1211,17 @@ public class RawPacket
     public static void setSequenceNumber(byte[] buffer, int offset, int seq)
     {
         RTPUtils.writeShort(buffer, offset + 2, (short) seq);
+    }
+
+
+    public static void setSequenceNumber(ByteArrayBuffer pktIn, int dstSeqNum)
+    {
+        if (pktIn == null)
+        {
+            return;
+        }
+
+        setSequenceNumber(pktIn.getBuffer(), pktIn.getOffset(), dstSeqNum);
     }
 
     /**
@@ -1191,6 +1237,16 @@ public class RawPacket
     public static void setTimestamp(byte[] buf, int off, int len, long ts)
     {
         RTPUtils.writeInt(buf, off + 4, (int) ts);
+    }
+
+    public static void setTimestamp(ByteArrayBuffer baf, long ts)
+    {
+        if (baf == null)
+        {
+            return;
+        }
+
+        setTimestamp(baf.getBuffer(), baf.getOffset(), baf.getLength(), ts);
     }
 
     /**
@@ -1273,6 +1329,16 @@ public class RawPacket
     public static long getTimestamp(byte[] buf, int off, int len)
     {
         return RTPUtils.readUint32AsLong(buf, off + 4);
+    }
+
+    public static long getTimestamp(ByteArrayBuffer baf)
+    {
+        if (baf == null)
+        {
+            return -1;
+        }
+
+        return getTimestamp(baf.getBuffer(), baf.getOffset(), baf.getLength());
     }
 
     /**

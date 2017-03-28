@@ -401,7 +401,14 @@ public abstract class RTPConnectorInputStream<T>
 
         RawPacket pkt = rawPacketPool.poll();
         if (pkt == null)
+        {
             pkt = new RawPacket();
+            System.out.println("BJB: RTPConnectorInputStream@" + hashCode() + " packet pool was empty");
+        }
+        else
+        {
+            System.out.println("BJB: RTPConnectorInputStream@" + hashCode() + " got packet " + pkt.hashCode() +
+                    " from pool.  pool size is now " + rawPacketPool.size());        }
 
         byte[] buffer = pkt.getBuffer();
         int length = datagramPacket.getLength();
@@ -595,6 +602,8 @@ public abstract class RTPConnectorInputStream<T>
         pkt.setLength(0);
         pkt.setOffset(0);
         rawPacketPool.offer(pkt);
+        System.out.println("BJB: RTPConnectorInputStream@" + hashCode() + " returned packet " + pkt.hashCode() +
+            " pool size is now " + rawPacketPool.size());
     }
 
     /**

@@ -592,7 +592,7 @@ public class RTPEncodingDesc
      * @param pkt
      * @param nowMs
      */
-    void update(RawPacket pkt, long nowMs)
+    public void update(RawPacket pkt, long nowMs)
     {
         // Update rate stats (this should run after padding termination).
         rateStatistics.update(pkt.getLength(), nowMs);
@@ -733,7 +733,7 @@ public class RTPEncodingDesc
      * @return the {@link FrameDesc} that matches the RTP timestamp given,
      * or null if there is no matching frame {@link FrameDesc}.
      */
-    FrameDesc findFrameDesc(long timestamp)
+    public FrameDesc findFrameDesc(long timestamp)
     {
         synchronized (base.streamFrames)
         {

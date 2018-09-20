@@ -95,7 +95,7 @@ public class FrameDesc
      * @param receivedMs the time (in millis) when the first packet of this
      * frame was received.
      */
-    FrameDesc(RTPEncodingDesc rtpEncoding, RawPacket pkt, long receivedMs)
+    public FrameDesc(RTPEncodingDesc rtpEncoding, RawPacket pkt, long receivedMs)
     {
         this.rtpEncoding = rtpEncoding;
         this.ts = pkt.getTimestamp();

@@ -15,7 +15,7 @@
  */
 package org.jitsi.impl.neomedia.stats;
 
-import org.ice4j.util.*;
+import org.jitsi.javautils.*;
 import org.jitsi.service.neomedia.stats.*;
 
 import java.util.concurrent.atomic.*;

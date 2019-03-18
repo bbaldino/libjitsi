@@ -18,8 +18,8 @@ package org.jitsi.impl.neomedia.transform.csrc;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
-import org.ice4j.util.*;
 import org.jitsi.impl.neomedia.*;
+import org.jitsi.javautils.*;
 
 /**
  * A simple dispatcher that handles new audio levels reported from incoming

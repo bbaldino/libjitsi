@@ -22,8 +22,8 @@ import java.util.concurrent.*;
 import javax.media.*;
 import javax.media.protocol.*;
 
-import org.ice4j.util.*;
 import org.jitsi.impl.neomedia.*;
+import org.jitsi.javautils.*;
 import org.jitsi.util.Logger; // Disambiguation.
 
 /**
